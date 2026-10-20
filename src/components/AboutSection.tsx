@@ -44,9 +44,10 @@ export const AboutSection: React.FC = () => {
               className="text-[hsl(0_0%_80%)] text-base md:text-lg leading-relaxed font-light mb-6"
             >
               CodWebX is an IT company based in Ahmedabad, Gujarat, India,
-              working with clients locally and remotely. We build websites,
-              custom software, and POS solutions that solve real operational
-              challenges for businesses.
+              working with clients locally and remotely. We provide website
+              development, application development, and custom software
+              development services, alongside our own proprietary product,
+              CodWebX POS.
             </motion.p>
 
             <div className="flex items-center gap-2 text-xs font-mono text-[hsl(0_0%_80%)] mb-8 bg-black/60 border border-white/10 px-4 py-2 rounded-full w-fit">
@@ -139,9 +140,10 @@ export const AboutSection: React.FC = () => {
                   <span className="text-[hsl(119_99%_46%)]">const</span> coreOfferings = [
                 </div>
                 <div className="pl-4 text-emerald-300">
-                  &apos;Web Development&apos;,<br />
-                  &apos;Software Development&apos;,<br />
-                  &apos;CodWebX POS&apos;
+                  &apos;Website Development&apos;,<br />
+                  &apos;Application Development&apos;,<br />
+                  &apos;Custom Software Development&apos;,<br />
+                  &apos;CodWebX POS (Our Own Product)&apos;
                 </div>
                 <div className="text-white">];</div>
                 <div className="text-white">

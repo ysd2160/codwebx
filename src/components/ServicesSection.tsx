@@ -11,7 +11,6 @@ import {
   Shield,
   BarChart3,
   Cpu,
-  Layers,
   Sparkles,
   Wifi,
   Activity,

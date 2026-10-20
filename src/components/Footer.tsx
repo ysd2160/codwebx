@@ -43,8 +43,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-[hsl(0_0%_65%)] text-sm font-light max-w-sm leading-relaxed mb-6">
-              Practical software engineering, high-performance websites, and dedicated
-              point-of-sale systems built for growing businesses.
+              Website development, application development, and custom software engineering, plus our proprietary CodWebX POS platform.
             </p>
 
             <div className="text-xs text-[hsl(0_0%_55%)] font-mono space-y-1">
@@ -86,10 +85,10 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-3 text-sm">
               {[
-                'Web Development',
-                'Software Development',
+                'Website Development',
+                'Application Development',
+                'Custom Software Development',
                 'CodWebX POS',
-                'Custom Business Software',
                 'Restaurant & Cafe Tech',
               ].map((service) => (
                 <li key={service}>

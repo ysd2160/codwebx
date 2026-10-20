@@ -137,7 +137,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       fullName: '',
       workEmail: '',
       companyName: '',
-      serviceRequired: 'Web Development',
+      serviceRequired: 'Website Development',
       estimatedBudget: 'To be discussed',
       projectDetails: '',
     })
@@ -416,9 +416,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                           }
                           className="w-full bg-black border border-white/10 focus:border-[hsl(119_99%_46%)] rounded-xl px-4 py-3 text-sm text-white outline-none transition-colors cursor-pointer"
                         >
-                          <option value="Web Development">Web Development</option>
-                          <option value="Software Development">Software Development</option>
-                          <option value="CodWebX POS">CodWebX POS (Product Solution)</option>
+                          <option value="Website Development">Website Development (Service)</option>
+                          <option value="Application Development">Application Development (Service)</option>
+                          <option value="Custom Software Development">Custom Software Development (Service)</option>
+                          <option value="CodWebX POS (Our Product)">CodWebX POS (Our Own Product)</option>
                           <option value="Other Project">Other / Custom Engineering</option>
                         </select>
                       </div>

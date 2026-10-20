@@ -54,11 +54,15 @@ npm run preview
 
 ---
 
-## 🛠️ Core Offerings
+## 🛠️ Core Services & Proprietary Product
 
-1. **Web Development**: Fast, responsive, conversion-focused websites and web applications built with modern frameworks and clean architecture.
-2. **Software Development**: Custom business applications, admin dashboards, workflow automation tools, and internal systems that solve operational bottlenecks.
-3. **CodWebX POS**: Dedicated point-of-sale platform for cafes, dining, and retail counters with 58mm/80mm thermal receipt printing, split payments, barcode/QR scanning, instant PDF invoicing, and visual sales telemetry.
+### Engineering Services:
+1. **Website Development**: High-performance, responsive, and conversion-focused business websites, landing pages, and CMS architectures.
+2. **Application Development**: Scalable single-page applications (SPAs), progressive web apps (PWAs), interactive portals, and cross-platform mobile apps.
+3. **Custom Software Development**: Tailored business systems, operational ERP/CRM modules, automated dispatch workflows, and internal management panels.
+
+### Proprietary In-House Product:
+4. **CodWebX POS**: Dedicated point-of-sale platform for cafes, dining counters, and retail stores with 58mm/80mm Bluetooth thermal printing, split payments, barcode/QR scanning, instant PDF invoicing, and real-time sales telemetry.
 
 ---
 
