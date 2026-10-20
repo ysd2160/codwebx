@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Navbar } from './components/Navbar'
-import { Hero } from './components/Hero'
+import { HeroSection } from './components/HeroSection'
 import { IntroSection } from './components/IntroSection'
 import { ServicesSection } from './components/ServicesSection'
+import { PosProductSection } from './components/PosProductSection'
 import { PortfolioSection } from './components/PortfolioSection'
 import { BenefitsSection } from './components/BenefitsSection'
 import { TechStackSection } from './components/TechStackSection'
 import { ProcessSection } from './components/ProcessSection'
-import { TestimonialsSection } from './components/TestimonialsSection'
+import { RealProofSection } from './components/RealProofSection'
 import { AboutSection } from './components/AboutSection'
 import { EngagementSection } from './components/EngagementSection'
 import { FAQSection } from './components/FAQSection'
@@ -31,7 +32,10 @@ export default function App(): React.JSX.Element {
     setSelectedModel(modelTitle)
   }
 
-  const handleScrollToContact = () => {
+  const handleScrollToContact = (context?: string) => {
+    if (context) {
+      setSelectedModel(context)
+    }
     const contactEl = document.querySelector('#contact')
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth' })
@@ -46,59 +50,66 @@ export default function App(): React.JSX.Element {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      {/* Floating Pill-shaped Navbar */}
-      <Navbar onOpenContact={handleScrollToContact} />
+    <div className="min-h-screen bg-[hsl(0_0%_7%)] text-white selection:bg-[hsl(119_99%_46%)] selection:text-black font-sora">
+      {/* Floating Pill-shaped Navigation */}
+      <Navbar onOpenContact={() => handleScrollToContact()} />
 
       {/* Main Content Sections */}
       <main>
-        {/* 01. Fullscreen Cinematic Hero Section */}
-        <Hero
+        {/* 01. Homepage Hero with 3D/Tech Spline & Fluid Clamp Typography */}
+        <HeroSection
           onExploreWork={handleScrollToWork}
-          onStartProject={handleScrollToContact}
+          onStartProject={() => handleScrollToContact()}
         />
 
-        {/* 02. Introductory Statement / Philosophy */}
+        {/* 02. Introductory Philosophy Statement */}
         <IntroSection />
 
         {/* 03. Services: What We Build */}
         <ServicesSection onSelectService={handleSelectService} />
 
-        {/* 04. Selected Projects / Portfolio */}
+        {/* 04. Dedicated POS Product Showcase (Anchor #pos & #products) */}
+        <PosProductSection
+          onDiscussPos={() =>
+            handleScrollToContact('inquiry regarding CodWebX POS product')
+          }
+        />
+
+        {/* 05. Featured Work & Selected Projects */}
         <PortfolioSection onStartProject={handleScrollToContact} />
 
-        {/* 05. Why Choose Us / Our Difference */}
+        {/* 06. Why CodWebX / 4 Principles */}
         <BenefitsSection />
 
-        {/* 06. Technology Stack */}
+        {/* 07. Technology Stack */}
         <TechStackSection />
 
-        {/* 07. Development Process Timeline */}
+        {/* 08. 5-Stage Delivery Process */}
         <ProcessSection />
 
-        {/* 08. Client Testimonials */}
-        <TestimonialsSection />
+        {/* 09. Verified Social Proof & Real Business Deliveries */}
+        <RealProofSection onStartProject={handleScrollToContact} />
 
-        {/* 09. About Us: Studio Ethos */}
+        {/* 10. About Us / Ahmedabad Studio Ethos */}
         <AboutSection />
 
-        {/* 10. Engagement Models */}
+        {/* 11. Engagement Models */}
         <EngagementSection onSelectModel={handleSelectModel} />
 
-        {/* 11. Frequently Asked Questions */}
+        {/* 12. Frequently Asked Questions */}
         <FAQSection />
 
-        {/* 12. Project Enquiry Form / Contact */}
+        {/* 13. Project Enquiry & Contact Section */}
         <ContactSection
           initialService={selectedService}
           initialModel={selectedModel}
         />
 
-        {/* 13. Final Typographic Statement */}
-        <FinalCTAStrip onStartConversation={handleScrollToContact} />
+        {/* 14. Final Typographic Statement */}
+        <FinalCTAStrip onStartConversation={() => handleScrollToContact()} />
       </main>
 
-      {/* 14. Global Editorial Footer */}
+      {/* 15. Global Editorial Footer */}
       <Footer
         onOpenLegal={(type) => setLegalModalType(type)}
         onSelectService={handleSelectService}

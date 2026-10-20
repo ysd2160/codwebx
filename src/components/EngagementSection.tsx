@@ -10,7 +10,7 @@ interface EngagementSectionProps {
 export const EngagementSection: React.FC<EngagementSectionProps> = ({
   onSelectModel,
 }) => {
-  const handleRequestProposal = (modelTitle: string) => {
+  const handleDiscussProject = (modelTitle: string) => {
     if (onSelectModel) {
       onSelectModel(modelTitle)
     }
@@ -21,65 +21,65 @@ export const EngagementSection: React.FC<EngagementSectionProps> = ({
   }
 
   return (
-    <section className="relative w-full bg-black py-32 md:py-44 px-6 md:px-12 border-t border-white/10">
+    <section className="relative w-full bg-black py-28 md:py-36 px-5 sm:px-8 lg:px-14 border-t border-white/10">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mb-20 md:mb-28">
-          <div className="flex items-center gap-3 text-xs tracking-widest text-neutral-400 mb-6">
-            <span className="w-2 h-2 rounded-full bg-white/40" />
-            <span>09 / engagement models</span>
+        <div className="max-w-3xl mb-16 md:mb-24">
+          <div className="flex items-center gap-3 text-xs font-mono tracking-widest text-[hsl(119_99%_46%)] uppercase mb-6">
+            <span className="w-2 h-2 rounded-full bg-[hsl(119_99%_46%)] glow-green" />
+            <span>ENGAGEMENT MODELS</span>
           </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight mb-6"
+            className="text-section-title font-extrabold tracking-tight text-white leading-tight mb-4"
           >
-            the right way to work together.
+            The right way to work together.
           </motion.h2>
-          <p className="text-neutral-400 text-sm md:text-base font-light">
-            flexible partnership structures tailored to your team's operational
-            cadence, product stage, and technical needs.
+          <p className="text-[hsl(0_0%_65%)] text-sm md:text-base font-light leading-relaxed">
+            Flexible collaboration structures tailored to your project stage,
+            team requirements, and operational pace.
           </p>
         </div>
 
         {/* 3 Models Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {engagementModels.map((model, index) => (
             <motion.div
               key={model.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="border border-white/10 rounded-3xl p-8 md:p-10 bg-neutral-950/80 hover:border-white/25 transition-all flex flex-col justify-between"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="border border-white/10 hover:border-[hsl(119_99%_46%/0.3)] rounded-3xl p-8 bg-[hsl(0_0%_10%)] transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono text-neutral-500">
-                    model 0{index + 1}
+                  <span className="text-xs font-mono text-[hsl(119_99%_46%)] bg-[hsl(119_99%_46%/0.08)] border border-[hsl(119_99%_46%/0.25)] px-3 py-1 rounded-full">
+                    Model 0{index + 1}
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-medium text-white mb-3 tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight">
                   {model.title}
                 </h3>
-                <p className="text-xs text-neutral-400 mb-4 font-mono">
+                <p className="text-xs text-[hsl(0_0%_55%)] mb-4 font-mono">
                   {model.bestFor}
                 </p>
-                <p className="text-neutral-300 text-sm leading-relaxed font-light mb-8">
+                <p className="text-[hsl(0_0%_70%)] text-sm leading-relaxed font-light mb-6">
                   {model.description}
                 </p>
 
                 {/* Features list */}
                 <div className="space-y-3 pt-6 border-t border-white/10 mb-8">
-                  {model.features.map((feature) => (
+                  {model.features.map((feature: string) => (
                     <div
                       key={feature}
-                      className="flex items-center gap-2.5 text-xs text-neutral-300 font-light"
+                      className="flex items-center gap-2.5 text-xs text-[hsl(0_0%_80%)] font-light"
                     >
-                      <Check className="w-3.5 h-3.5 text-white/70 flex-shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[hsl(119_99%_46%)] flex-shrink-0" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -87,13 +87,13 @@ export const EngagementSection: React.FC<EngagementSectionProps> = ({
               </div>
 
               {/* Action Button */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   type="button"
-                  onClick={() => handleRequestProposal(model.title)}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-black text-white text-xs font-medium transition-all cursor-pointer"
+                  onClick={() => handleDiscussProject(model.title)}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full border border-white/20 hover:border-[hsl(119_99%_46%)] hover:bg-[hsl(119_99%_46%)] hover:text-black text-white text-xs font-medium transition-all cursor-pointer"
                 >
-                  <span>request a proposal</span>
+                  <span>Discuss Your Project</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -101,11 +101,11 @@ export const EngagementSection: React.FC<EngagementSectionProps> = ({
           ))}
         </div>
 
-        {/* Pricing & Timeline Scope Statement */}
-        <p className="text-center text-xs text-neutral-400 font-light mt-12 max-w-2xl mx-auto">
-          *timelines and pricing depend strictly on verified project scope,
-          architectural complexity, and delivery requirements. all proposals are
-          tailored following technical discovery.
+        {/* Scope and Pricing Statement */}
+        <p className="text-center text-xs text-[hsl(0_0%_50%)] font-light mt-12 max-w-2xl mx-auto">
+          *Timelines and investment depend strictly on verified project scope,
+          feature requirements, and integrations. We provide clear proposals
+          after initial technical discovery.
         </p>
       </div>
     </section>

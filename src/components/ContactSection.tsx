@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, CheckCircle2, Loader2, AlertCircle } from 'lucide-react'
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Loader2,
+  AlertCircle,
+  Mail,
+  Phone,
+  MapPin,
+  MessageSquare,
+} from 'lucide-react'
 
 interface ContactSectionProps {
   initialService?: string
@@ -13,15 +22,14 @@ interface FormState {
   companyName: string
   serviceRequired: string
   estimatedBudget: string
-  projectTimeline: string
-  projectDescription: string
+  projectDetails: string
 }
 
 interface FormErrors {
   fullName?: string
   workEmail?: string
   serviceRequired?: string
-  projectDescription?: string
+  projectDetails?: string
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
@@ -32,10 +40,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     fullName: '',
     workEmail: '',
     companyName: '',
-    serviceRequired: 'web development',
-    estimatedBudget: '$25k - $50k',
-    projectTimeline: '1 - 3 months',
-    projectDescription: '',
+    serviceRequired: 'Website Development',
+    estimatedBudget: 'To be discussed',
+    projectDetails: '',
   })
 
   const [errors, setErrors] = useState<FormErrors>({})
@@ -43,13 +50,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submissionError, setSubmissionError] = useState<string | null>(null)
 
-  // Update preselected values when passed from other sections
+  // Synchronize when a service or model is selected from another section
   useEffect(() => {
     if (initialService) {
-      setFormData((prev) => ({
-        ...prev,
-        serviceRequired: initialService.toLowerCase(),
-      }))
+      const normalized = initialService.toLowerCase()
+      if (normalized.includes('pos')) {
+        setFormData((prev) => ({ ...prev, serviceRequired: 'CodWebX POS (Our Product)' }))
+      } else if (normalized.includes('custom') || normalized.includes('soft')) {
+        setFormData((prev) => ({ ...prev, serviceRequired: 'Custom Software Development' }))
+      } else if (normalized.includes('app')) {
+        setFormData((prev) => ({ ...prev, serviceRequired: 'Application Development' }))
+      } else if (normalized.includes('web') || normalized.includes('site')) {
+        setFormData((prev) => ({ ...prev, serviceRequired: 'Website Development' }))
+      } else {
+        setFormData((prev) => ({ ...prev, serviceRequired: initialService }))
+      }
     }
   }, [initialService])
 
@@ -57,9 +72,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     if (initialModel) {
       setFormData((prev) => ({
         ...prev,
-        projectDescription: prev.projectDescription
-          ? `${prev.projectDescription}\n[interested in ${initialModel}]`
-          : `interested in ${initialModel} engagement model.`,
+        projectDetails: prev.projectDetails
+          ? `${prev.projectDetails}\n[Interested in: ${initialModel}]`
+          : `Interested in: ${initialModel}. `,
       }))
     }
   }, [initialModel])
@@ -67,27 +82,27 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const validate = (): boolean => {
     const errs: FormErrors = {}
     if (!formData.fullName.trim()) {
-      errs.fullName = 'full name is required'
+      errs.fullName = 'Full name is required.'
     } else if (formData.fullName.trim().length < 2) {
-      errs.fullName = 'please enter at least 2 characters'
+      errs.fullName = 'Please enter at least 2 characters.'
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!formData.workEmail.trim()) {
-      errs.workEmail = 'work email is required'
+      errs.workEmail = 'Email is required.'
     } else if (!emailRegex.test(formData.workEmail.trim())) {
-      errs.workEmail = 'please enter a valid work email address'
+      errs.workEmail = 'Please enter a valid email address.'
     }
 
     if (!formData.serviceRequired) {
-      errs.serviceRequired = 'please select a service'
+      errs.serviceRequired = 'Please select a service.'
     }
 
-    if (!formData.projectDescription.trim()) {
-      errs.projectDescription = 'project description is required'
-    } else if (formData.projectDescription.trim().length < 10) {
-      errs.projectDescription =
-        'please provide at least a brief summary (minimum 10 characters)'
+    if (!formData.projectDetails.trim()) {
+      errs.projectDetails = 'Please share a brief summary of your project.'
+    } else if (formData.projectDetails.trim().length < 10) {
+      errs.projectDetails =
+        'Please provide at least 10 characters to help us understand your needs.'
     }
 
     setErrors(errs)
@@ -104,15 +119,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
     setIsSubmitting(true)
 
-    // Simulate realistic async dispatch with API endpoint simulation
-    // Integration Note: To connect to production backend, set VITE_API_CONTACT_ENDPOINT
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200))
-      // In production: const res = await fetch('/api/enquiry', { method: 'POST', body: JSON.stringify(formData) })
+      // Simulate real-world transmission
+      await new Promise((resolve) => setTimeout(resolve, 900))
       setIsSubmitted(true)
     } catch {
       setSubmissionError(
-        'unable to transmit enquiry at this time. please email directly at hello@securify.studio',
+        'Unable to transmit enquiry directly. Please reach out to codwebx@gmail.com or call +91 7575097762.',
       )
     } finally {
       setIsSubmitting(false)
@@ -124,82 +137,125 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       fullName: '',
       workEmail: '',
       companyName: '',
-      serviceRequired: 'web development',
-      estimatedBudget: '$25k - $50k',
-      projectTimeline: '1 - 3 months',
-      projectDescription: '',
+      serviceRequired: 'Web Development',
+      estimatedBudget: 'To be discussed',
+      projectDetails: '',
     })
     setIsSubmitted(false)
     setErrors({})
     setSubmissionError(null)
   }
 
+  const whatsappMessage = encodeURIComponent(
+    `Hello CodWebX, I would like to discuss a project with you.\n\nName: ${formData.fullName || '[Your Name]'}\nService: ${formData.serviceRequired}\nDetails: ${formData.projectDetails || '[Project summary]'}`,
+  )
+
   return (
     <section
       id="contact"
-      className="relative w-full bg-black py-32 md:py-44 px-6 md:px-12 border-t border-white/10"
+      className="relative w-full bg-black py-28 md:py-36 px-5 sm:px-8 lg:px-14 border-t border-white/10"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Column: Headline and Direct Details */}
+          {/* Left Column: Direct Info & Channels */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-3 text-xs tracking-widest text-neutral-400 mb-6">
-                <span className="w-2 h-2 rounded-full bg-white/40" />
-                <span>11 / get in touch</span>
+              <div className="flex items-center gap-3 text-xs font-mono tracking-widest text-[hsl(119_99%_46%)] uppercase mb-6">
+                <span className="w-2 h-2 rounded-full bg-[hsl(119_99%_46%)] glow-green" />
+                <span>HAVE SOMETHING IN MIND?</span>
               </div>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="text-4xl md:text-6xl font-medium tracking-tight text-white leading-tight mb-8"
+                className="text-section-title font-extrabold tracking-tight text-white leading-tight mb-6"
               >
-                let's build something meaningful.
+                Let&apos;s build something <br />
+                <span className="text-[hsl(119_99%_46%)]">that matters.</span>
               </motion.h2>
-              <p className="text-neutral-400 text-base md:text-lg leading-relaxed font-light mb-12">
-                have an idea, a business challenge, or a product that needs a
-                better technical foundation? tell us what you're working on.
+              <p className="text-[hsl(0_0%_70%)] text-base md:text-lg leading-relaxed font-light mb-10">
+                Tell us what you&apos;re planning, what challenges you&apos;re facing,
+                or what you&apos;d like your software to accomplish. We&apos;ll use that
+                information to understand the project and discuss the next steps.
               </p>
             </div>
 
-            {/* Direct Contact Placeholders */}
+            {/* Direct Contact Details */}
             <div className="space-y-6 pt-8 border-t border-white/10">
-              <div>
-                <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest block mb-1">
-                  email enquiry
-                </span>
+              {/* Email */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[hsl(119_99%_46%/0.1)] border border-[hsl(119_99%_46%/0.3)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Mail className="w-4 h-4 text-[hsl(119_99%_46%)]" />
+                </div>
+                <div>
+                  <span className="text-xs font-mono text-[hsl(0_0%_50%)] uppercase tracking-wider block mb-0.5">
+                    Direct Email
+                  </span>
+                  <a
+                    href="mailto:codwebx@gmail.com"
+                    className="text-base text-white hover:text-[hsl(119_99%_46%)] transition-colors font-medium"
+                  >
+                    codwebx@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Telephone */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[hsl(119_99%_46%/0.1)] border border-[hsl(119_99%_46%/0.3)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Phone className="w-4 h-4 text-[hsl(119_99%_46%)]" />
+                </div>
+                <div>
+                  <span className="text-xs font-mono text-[hsl(0_0%_50%)] uppercase tracking-wider block mb-0.5">
+                    Phone &amp; Direct Consultation
+                  </span>
+                  <a
+                    href="tel:+917575097762"
+                    className="text-base text-white hover:text-[hsl(119_99%_46%)] transition-colors font-mono"
+                  >
+                    +91 7575097762
+                  </a>
+                </div>
+              </div>
+
+              {/* Location */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[hsl(119_99%_46%/0.1)] border border-[hsl(119_99%_46%/0.3)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4 text-[hsl(119_99%_46%)]" />
+                </div>
+                <div>
+                  <span className="text-xs font-mono text-[hsl(0_0%_50%)] uppercase tracking-wider block mb-0.5">
+                    Headquarters
+                  </span>
+                  <span className="text-base text-white font-medium block">
+                    Ahmedabad, Gujarat, India
+                  </span>
+                  <span className="text-xs text-[hsl(0_0%_55%)] font-light">
+                    Available for local meetings &amp; remote collaboration worldwide
+                  </span>
+                </div>
+              </div>
+
+              {/* Quick WhatsApp Button */}
+              <div className="pt-2">
                 <a
-                  href="mailto:hello@securify.studio"
-                  className="text-base text-white hover:text-neutral-300 transition-colors font-light"
+                  href={`https://wa.me/917575097762?text=${whatsappMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[hsl(0_0%_12%)] border border-white/20 text-white text-xs sm:text-sm px-5 py-3 rounded-full hover:border-[hsl(119_99%_46%/0.5)] hover:text-[hsl(119_99%_46%)] hover:bg-[hsl(0_0%_16%)] transition-all"
                 >
-                  hello@securify.studio
+                  <MessageSquare className="w-4 h-4 text-[hsl(119_99%_46%)]" />
+                  <span>Chat on WhatsApp (+91 7575097762)</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
-              </div>
-
-              <div>
-                <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest block mb-1">
-                  telephone
-                </span>
-                <span className="text-base text-white font-light">
-                  +1 (555) 019-2834
-                </span>
-              </div>
-
-              <div>
-                <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest block mb-1">
-                  headquarters & studio
-                </span>
-                <span className="text-base text-white font-light">
-                  san francisco, ca & remote worldwide
-                </span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Project Enquiry Form */}
           <div className="lg:col-span-7">
-            <div className="border border-white/10 rounded-3xl p-8 sm:p-12 bg-neutral-950/80">
+            <div className="border border-white/10 rounded-3xl p-6 sm:p-10 bg-[hsl(0_0%_10%)] shadow-2xl">
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
                   <motion.div
@@ -209,110 +265,122 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="py-12 text-center"
                   >
-                    <div className="w-16 h-16 rounded-full border border-white/20 bg-white/5 flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle2 className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 rounded-full bg-[hsl(119_99%_46%/0.1)] border border-[hsl(119_99%_46%/0.3)] flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle2 className="w-8 h-8 text-[hsl(119_99%_46%)]" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-medium text-white mb-3 tracking-tight">
-                      enquiry transmitted successfully.
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">
+                      Enquiry Received
                     </h3>
-                    <p className="text-neutral-400 text-sm md:text-base max-w-md mx-auto font-light leading-relaxed mb-8">
-                      thank you for sharing your project parameters. our
-                      engineering lead will review the specifications and reply
-                      within one business day.
+                    <p className="text-[hsl(0_0%_70%)] text-sm sm:text-base leading-relaxed font-light max-w-md mx-auto mb-8">
+                      Thank you, {formData.fullName}. We have received your project
+                      details and will review them thoroughly before reaching out.
                     </p>
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="inline-flex items-center gap-2 bg-white text-black text-xs font-medium px-6 py-3 rounded-full hover:bg-neutral-200 transition-colors cursor-pointer"
-                    >
-                      <span>submit another enquiry</span>
-                    </button>
+
+                    <div className="flex flex-wrap items-center justify-center gap-4">
+                      <button
+                        onClick={handleReset}
+                        type="button"
+                        className="text-xs sm:text-sm text-[hsl(0_0%_80%)] border border-white/20 hover:border-white px-5 py-2.5 rounded-full transition-colors cursor-pointer"
+                      >
+                        Submit another enquiry
+                      </button>
+                      <a
+                        href={`https://wa.me/917575097762?text=${whatsappMessage}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[hsl(119_99%_46%)] text-black text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[hsl(119_99%_52%)] transition-colors"
+                      >
+                        <span>Follow up on WhatsApp</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
                   </motion.div>
                 ) : (
-                  <motion.form
-                    key="form"
-                    onSubmit={handleSubmit}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="space-y-6"
-                    noValidate
-                  >
-                    {/* Name & Work Email */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight">
+                        Project Enquiry
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[hsl(0_0%_60%)] font-light">
+                        Share your goals and requirements. We respond with thoughtful technical feedback.
+                      </p>
+                    </div>
+
+                    {submissionError && (
+                      <div className="flex items-center gap-2.5 p-3.5 rounded-xl bg-red-950/60 border border-red-500/30 text-red-200 text-xs">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        <span>{submissionError}</span>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      {/* Full Name */}
                       <div>
                         <label
                           htmlFor="fullName"
-                          className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
+                          className="block text-xs font-mono text-[hsl(0_0%_70%)] uppercase tracking-wider mb-2"
                         >
-                          full name *
+                          Full Name *
                         </label>
                         <input
                           id="fullName"
                           type="text"
                           value={formData.fullName}
                           onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              fullName: e.target.value,
-                            })
+                            setFormData({ ...formData, fullName: e.target.value })
                           }
-                          placeholder="e.g. alex morgan"
+                          placeholder="Your Name"
                           className={`w-full bg-black/60 border ${
                             errors.fullName
-                              ? 'border-red-500'
-                              : 'border-white/10 focus:border-white/40'
-                          } rounded-2xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none transition-colors`}
+                              ? 'border-red-500/80 focus:border-red-500'
+                              : 'border-white/10 focus:border-[hsl(119_99%_46%)]'
+                          } rounded-xl px-4 py-3 text-sm text-white placeholder-[hsl(0_0%_40%)] outline-none transition-colors`}
                         />
                         {errors.fullName && (
-                          <p className="text-xs text-neutral-300 mt-1 flex items-center gap-1 font-mono">
-                            <AlertCircle className="w-3 h-3" />
+                          <span className="text-[11px] text-red-400 mt-1 block">
                             {errors.fullName}
-                          </p>
+                          </span>
                         )}
                       </div>
 
+                      {/* Work Email */}
                       <div>
                         <label
                           htmlFor="workEmail"
-                          className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
+                          className="block text-xs font-mono text-[hsl(0_0%_70%)] uppercase tracking-wider mb-2"
                         >
-                          work email *
+                          Work Email *
                         </label>
                         <input
                           id="workEmail"
                           type="email"
                           value={formData.workEmail}
                           onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              workEmail: e.target.value,
-                            })
+                            setFormData({ ...formData, workEmail: e.target.value })
                           }
-                          placeholder="alex@company.com"
+                          placeholder="name@company.com"
                           className={`w-full bg-black/60 border ${
                             errors.workEmail
-                              ? 'border-red-500'
-                              : 'border-white/10 focus:border-white/40'
-                          } rounded-2xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none transition-colors`}
+                              ? 'border-red-500/80 focus:border-red-500'
+                              : 'border-white/10 focus:border-[hsl(119_99%_46%)]'
+                          } rounded-xl px-4 py-3 text-sm text-white placeholder-[hsl(0_0%_40%)] outline-none transition-colors`}
                         />
                         {errors.workEmail && (
-                          <p className="text-xs text-neutral-300 mt-1 flex items-center gap-1 font-mono">
-                            <AlertCircle className="w-3 h-3" />
+                          <span className="text-[11px] text-red-400 mt-1 block">
                             {errors.workEmail}
-                          </p>
+                          </span>
                         )}
                       </div>
                     </div>
 
-                    {/* Company Name & Service Required */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      {/* Company Name */}
                       <div>
                         <label
                           htmlFor="companyName"
-                          className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
+                          className="block text-xs font-mono text-[hsl(0_0%_70%)] uppercase tracking-wider mb-2"
                         >
-                          company name
+                          Company / Brand (Optional)
                         </label>
                         <input
                           id="companyName"
@@ -324,17 +392,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                               companyName: e.target.value,
                             })
                           }
-                          placeholder="company or project title"
-                          className="w-full bg-black/60 border border-white/10 focus:border-white/40 rounded-2xl px-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none transition-colors"
+                          placeholder="e.g. Good Vibes Cafe"
+                          className="w-full bg-black/60 border border-white/10 focus:border-[hsl(119_99%_46%)] rounded-xl px-4 py-3 text-sm text-white placeholder-[hsl(0_0%_40%)] outline-none transition-colors"
                         />
                       </div>
 
+                      {/* Service Required */}
                       <div>
                         <label
                           htmlFor="serviceRequired"
-                          className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
+                          className="block text-xs font-mono text-[hsl(0_0%_70%)] uppercase tracking-wider mb-2"
                         >
-                          service required *
+                          Service Required *
                         </label>
                         <select
                           id="serviceRequired"
@@ -345,148 +414,93 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                               serviceRequired: e.target.value,
                             })
                           }
-                          className="w-full bg-black border border-white/10 focus:border-white/40 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none transition-colors cursor-pointer"
+                          className="w-full bg-black border border-white/10 focus:border-[hsl(119_99%_46%)] rounded-xl px-4 py-3 text-sm text-white outline-none transition-colors cursor-pointer"
                         >
-                          <option value="web development">web development</option>
-                          <option value="mobile app development">
-                            mobile app development
-                          </option>
-                          <option value="custom software">custom software</option>
-                          <option value="saas product development">
-                            saas product development
-                          </option>
-                          <option value="ui/ux design">ui/ux design</option>
-                          <option value="ai and integrations">
-                            ai and integrations
-                          </option>
-                          <option value="other">other technical solution</option>
+                          <option value="Web Development">Web Development</option>
+                          <option value="Software Development">Software Development</option>
+                          <option value="CodWebX POS">CodWebX POS (Product Solution)</option>
+                          <option value="Other Project">Other / Custom Engineering</option>
                         </select>
                       </div>
                     </div>
 
-                    {/* Budget & Timeline */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
-                        <label
-                          htmlFor="estimatedBudget"
-                          className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
-                        >
-                          estimated budget
-                        </label>
-                        <select
-                          id="estimatedBudget"
-                          value={formData.estimatedBudget}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              estimatedBudget: e.target.value,
-                            })
-                          }
-                          className="w-full bg-black border border-white/10 focus:border-white/40 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none transition-colors cursor-pointer"
-                        >
-                          <option value="<$10k">&lt;$10k</option>
-                          <option value="$10k - $25k">$10k – $25k</option>
-                          <option value="$25k - $50k">$25k – $50k</option>
-                          <option value="$50k+">$50k+</option>
-                          <option value="undetermined / exploratory">
-                            undetermined / exploratory
-                          </option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="projectTimeline"
-                          className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
-                        >
-                          project timeline
-                        </label>
-                        <select
-                          id="projectTimeline"
-                          value={formData.projectTimeline}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              projectTimeline: e.target.value,
-                            })
-                          }
-                          className="w-full bg-black border border-white/10 focus:border-white/40 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none transition-colors cursor-pointer"
-                        >
-                          <option value="immediate (< 1 month)">
-                            immediate (&lt; 1 month)
-                          </option>
-                          <option value="1 - 3 months">1 – 3 months</option>
-                          <option value="3 - 6 months">3 – 6 months</option>
-                          <option value="flexible">flexible</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Project Description */}
+                    {/* Estimated Budget Tier */}
                     <div>
                       <label
-                        htmlFor="projectDescription"
-                        className="block text-xs font-mono text-neutral-400 mb-2 uppercase tracking-wider"
+                        htmlFor="estimatedBudget"
+                        className="block text-xs font-mono text-[hsl(0_0%_70%)] uppercase tracking-wider mb-2"
                       >
-                        project description *
+                        Project Budget (Estimated)
                       </label>
-                      <textarea
-                        id="projectDescription"
-                        rows={4}
-                        value={formData.projectDescription}
+                      <select
+                        id="estimatedBudget"
+                        value={formData.estimatedBudget}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
-                            projectDescription: e.target.value,
+                            estimatedBudget: e.target.value,
                           })
                         }
-                        placeholder="tell us about your requirements, desired outcomes, and key milestones..."
+                        className="w-full bg-black border border-white/10 focus:border-[hsl(119_99%_46%)] rounded-xl px-4 py-3 text-sm text-white outline-none transition-colors cursor-pointer"
+                      >
+                        <option value="To be discussed">To be discussed</option>
+                        <option value="Under $2,000 / ₹1,50,000">Under $2,000 / ₹1,50,000</option>
+                        <option value="$2,000 – $5,000 / ₹1,50,000 – ₹4,00,000">$2,000 – $5,000 / ₹1,50,000 – ₹4,00,000</option>
+                        <option value="$5,000+ / ₹4,00,000+">$5,000+ / ₹4,00,000+</option>
+                      </select>
+                    </div>
+
+                    {/* Project Details */}
+                    <div>
+                      <label
+                        htmlFor="projectDetails"
+                        className="block text-xs font-mono text-[hsl(0_0%_70%)] uppercase tracking-wider mb-2"
+                      >
+                        Project Details *
+                      </label>
+                      <textarea
+                        id="projectDetails"
+                        rows={4}
+                        value={formData.projectDetails}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            projectDetails: e.target.value,
+                          })
+                        }
+                        placeholder="Tell us about what you want to build, current challenges, or your desired timeline..."
                         className={`w-full bg-black/60 border ${
-                          errors.projectDescription
-                            ? 'border-red-500'
-                            : 'border-white/10 focus:border-white/40'
-                        } rounded-2xl p-4 text-sm text-white placeholder-neutral-600 focus:outline-none transition-colors resize-none`}
+                          errors.projectDetails
+                            ? 'border-red-500/80 focus:border-red-500'
+                            : 'border-white/10 focus:border-[hsl(119_99%_46%)]'
+                        } rounded-xl px-4 py-3 text-sm text-white placeholder-[hsl(0_0%_40%)] outline-none transition-colors resize-y`}
                       />
-                      {errors.projectDescription && (
-                        <p className="text-xs text-neutral-300 mt-1 flex items-center gap-1 font-mono">
-                          <AlertCircle className="w-3 h-3" />
-                          {errors.projectDescription}
-                        </p>
+                      {errors.projectDetails && (
+                        <span className="text-[11px] text-red-400 mt-1 block">
+                          {errors.projectDetails}
+                        </span>
                       )}
                     </div>
 
-                    {submissionError && (
-                      <div className="p-4 rounded-xl bg-white/5 border border-white/20 text-neutral-300 text-xs">
-                        {submissionError}
-                      </div>
-                    )}
-
-                    {/* Submit CTA */}
-                    <div className="pt-2">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full flex items-center justify-center gap-2 bg-white text-black text-sm font-medium py-4 px-8 rounded-full hover:bg-neutral-200 transition-colors disabled:opacity-50 cursor-pointer"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                            <span>transmitting enquiry...</span>
-                          </>
-                        ) : (
-                          <>
-                            <span>send project enquiry</span>
-                            <ArrowUpRight className="w-4 h-4" />
-                          </>
-                        )}
-                      </button>
-                    </div>
-
-                    <p className="text-center text-[11px] text-neutral-500 font-mono">
-                      direct dispatch · no marketing spam · reply within 24
-                      hours
-                    </p>
-                  </motion.form>
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full flex items-center justify-center gap-2 bg-[hsl(119_99%_46%)] text-black text-sm sm:text-base font-semibold py-4 px-8 rounded-full hover:bg-[hsl(119_99%_52%)] glow-green transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Sending Enquiry...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Project Enquiry</span>
+                          <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                        </>
+                      )}
+                    </button>
+                  </form>
                 )}
               </AnimatePresence>
             </div>

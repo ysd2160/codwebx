@@ -21,16 +21,17 @@ export const FinalCTAStrip: React.FC<FinalCTAStripProps> = ({
   }
 
   return (
-    <section className="relative w-full bg-black py-28 md:py-36 px-6 md:px-12 border-t border-white/10 overflow-hidden">
+    <section className="relative w-full bg-[hsl(0_0%_7%)] py-28 md:py-36 px-5 sm:px-8 lg:px-14 border-t border-white/10 overflow-hidden">
       <div className="max-w-5xl mx-auto text-center relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white mb-6 leading-tight select-none"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6 leading-tight select-none"
         >
-          your next idea starts here.
+          Your next idea <br />
+          <span className="text-[hsl(119_99%_46%)] text-glow-green">starts here.</span>
         </motion.h2>
 
         <motion.p
@@ -38,9 +39,9 @@ export const FinalCTAStrip: React.FC<FinalCTAStripProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-neutral-400 text-base md:text-xl font-light max-w-xl mx-auto mb-10"
+          className="text-[hsl(0_0%_70%)] text-base md:text-xl font-light max-w-xl mx-auto mb-10"
         >
-          let's turn the next challenge into your next opportunity.
+          Let&apos;s turn your operational challenge into a powerful software advantage.
         </motion.p>
 
         <motion.div
@@ -52,16 +53,16 @@ export const FinalCTAStrip: React.FC<FinalCTAStripProps> = ({
           <button
             onClick={handleClick}
             type="button"
-            className="inline-flex items-center gap-2 bg-white text-black text-sm md:text-base font-normal px-8 py-4 rounded-full hover:bg-neutral-200 transition-colors cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+            className="inline-flex items-center gap-2 bg-[hsl(119_99%_46%)] text-black text-sm md:text-base font-semibold px-9 py-4 rounded-full hover:bg-[hsl(119_99%_52%)] glow-green transition-all cursor-pointer"
           >
-            <span>start a conversation</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span>Start a Conversation</span>
+            <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
           </button>
         </motion.div>
       </div>
 
       {/* Subtle radial ambient highlight */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-white/[0.02] rounded-full blur-3xl" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[hsl(119_99%_46%/0.05)] rounded-full blur-3xl" />
     </section>
   )
 }

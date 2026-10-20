@@ -7,22 +7,22 @@ export const techStackData: TechCategory[] = [
   },
   {
     category: 'backend',
-    items: ['node.js', 'express', 'laravel', 'php', 'python'],
+    items: ['laravel', 'php', 'node.js', 'express', 'python'],
+  },
+  {
+    category: 'databases',
+    items: ['mysql', 'postgresql', 'mongodb'],
   },
   {
     category: 'mobile',
     items: ['react native', 'flutter'],
   },
   {
-    category: 'databases',
-    items: ['postgresql', 'mysql', 'mongodb'],
-  },
-  {
-    category: 'infrastructure & integrations',
+    category: 'integrations & infrastructure',
     items: [
-      'cloud services',
       'rest apis',
       'authentication systems',
+      'cloud deployment',
       'payment integrations',
       'analytics and monitoring',
     ],

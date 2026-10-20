@@ -11,26 +11,26 @@ export const FAQSection: React.FC = () => {
   }
 
   return (
-    <section className="relative w-full bg-black py-32 md:py-44 px-6 md:px-12 border-t border-white/10">
+    <section className="relative w-full bg-[hsl(0_0%_7%)] py-28 md:py-36 px-5 sm:px-8 lg:px-14 border-t border-white/10">
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-20 md:mb-28">
-          <div className="inline-flex items-center gap-3 text-xs tracking-widest text-neutral-400 mb-6">
-            <span className="w-2 h-2 rounded-full bg-white/40" />
-            <span>10 / questions & answers</span>
+        <div className="text-center mb-16 md:mb-24">
+          <div className="inline-flex items-center gap-3 text-xs font-mono tracking-widest text-[hsl(119_99%_46%)] uppercase mb-6">
+            <span className="w-2 h-2 rounded-full bg-[hsl(119_99%_46%)] glow-green" />
+            <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="text-3xl md:text-5xl font-medium tracking-tight text-white leading-tight mb-6"
+            className="text-section-title font-extrabold tracking-tight text-white leading-tight mb-4"
           >
-            frequently asked questions.
+            Clear answers to common questions.
           </motion.h2>
-          <p className="text-neutral-400 text-sm md:text-base font-light max-w-lg mx-auto">
-            clear answers about our technical engagement process, pricing
-            approach, and delivery milestones.
+          <p className="text-[hsl(0_0%_65%)] text-sm md:text-base font-light max-w-lg mx-auto">
+            Everything you need to know about our technical delivery process, POS
+            solutions, and how we work with clients.
           </p>
         </div>
 
@@ -39,25 +39,25 @@ export const FAQSection: React.FC = () => {
           {faqsData.map((faq, index) => {
             const isOpen = openId === faq.id
             return (
-              <div key={faq.id} className="py-6 md:py-8">
+              <div key={faq.id} className="py-6">
                 <button
                   type="button"
                   onClick={() => toggleFAQ(faq.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
                   id={`faq-question-${faq.id}`}
-                  className="w-full flex items-center justify-between gap-6 text-left group cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded-lg"
+                  className="w-full flex items-center justify-between gap-6 text-left group cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(119_99%_46%)] rounded-lg"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="text-xs font-mono text-neutral-500">
+                    <span className="text-xs font-mono text-[hsl(119_99%_46%)]">
                       0{index + 1}
                     </span>
-                    <span className="text-lg md:text-xl font-medium text-white group-hover:text-neutral-200 transition-colors tracking-tight">
+                    <span className="text-base sm:text-lg font-semibold text-white group-hover:text-[hsl(119_99%_46%)] transition-colors tracking-tight">
                       {faq.question}
                     </span>
                   </div>
 
-                  <div className="w-8 h-8 rounded-full border border-white/20 group-hover:border-white flex items-center justify-center text-white transition-colors flex-shrink-0">
+                  <div className={`w-8 h-8 rounded-full border ${isOpen ? 'border-[hsl(119_99%_46%)] bg-[hsl(119_99%_46%/0.1)] text-[hsl(119_99%_46%)]' : 'border-white/20 text-white group-hover:border-white'} flex items-center justify-center transition-colors flex-shrink-0`}>
                     {isOpen ? (
                       <Minus className="w-3.5 h-3.5" />
                     ) : (
@@ -78,8 +78,8 @@ export const FAQSection: React.FC = () => {
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-4 pl-8 md:pl-10 pr-4">
-                        <p className="text-neutral-400 text-sm md:text-base leading-relaxed font-light">
+                      <div className="pt-3 pl-8 md:pl-10 pr-4">
+                        <p className="text-[hsl(0_0%_70%)] text-sm leading-relaxed font-light">
                           {faq.answer}
                         </p>
                       </div>

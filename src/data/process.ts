@@ -3,50 +3,32 @@ import { ProcessStage } from '../types'
 export const processStages: ProcessStage[] = [
   {
     step: '01',
-    name: 'discover',
+    name: 'Discover',
     summary:
-      'we understand your business, users, requirements, and desired outcomes.',
-    deliverables: ['discovery notes', 'requirements specification', 'project scope'],
+      'Understand the business, goals, requirements, and current challenges.',
   },
   {
     step: '02',
-    name: 'define',
+    name: 'Plan',
     summary:
-      'we establish priorities, technical direction, milestones, and a practical delivery plan.',
-    deliverables: [
-      'project roadmap',
-      'architecture outline',
-      'feature priorities',
-    ],
+      'Define the scope, priorities, technical direction, and milestones.',
   },
   {
     step: '03',
-    name: 'design',
+    name: 'Design',
     summary:
-      'we create wireframes, visual systems, and user experiences before moving into implementation.',
-    deliverables: ['wireframes', 'ui design system', 'interactive prototypes'],
+      'Establish the user experience, visual direction, and interface.',
   },
   {
     step: '04',
-    name: 'develop',
+    name: 'Develop',
     summary:
-      'we build the product in focused iterations, validating functionality and quality along the way.',
-    deliverables: [
-      'implemented features',
-      'backend & api integrations',
-      'automated & manual testing',
-    ],
+      'Implement the solution and validate its functionality through testing.',
   },
   {
     step: '05',
-    name: 'launch and evolve',
+    name: 'Launch and improve',
     summary:
-      'we deploy the product, monitor its performance, and support future improvements.',
-    deliverables: [
-      'cloud deployment',
-      'client handover',
-      'system documentation',
-      'optional maintenance',
-    ],
+      'Deploy the product, complete the handover, and discuss future improvements.',
   },
 ]

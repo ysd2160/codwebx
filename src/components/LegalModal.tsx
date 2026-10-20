@@ -64,19 +64,19 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
             {isPrivacy ? (
               <>
                 <p>
-                  at securify, we believe your personal data belongs to you. this
-                  privacy policy outlines how we collect, use, and protect
-                  information shared through our digital product studio website.
+                  at codwebx, we respect your personal privacy. this policy
+                  outlines how we handle information shared through our agency
+                  website and digital channels.
                 </p>
                 <div>
                   <h3 className="text-base font-medium text-white mb-2">
                     data collection
                   </h3>
                   <p>
-                    we only collect information explicitly provided by you
-                    through our project enquiry form (such as your name, work
-                    email, company, and project details) solely to evaluate and
-                    respond to your technical inquiries.
+                    we only collect details explicitly submitted by you through
+                    our project enquiry form (such as your name, work email,
+                    business name, and project description) solely to assess and
+                    reply to your technical requirements.
                   </p>
                 </div>
                 <div>
@@ -84,9 +84,9 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
                     use of information
                   </h3>
                   <p>
-                    we do not sell, rent, or trade your contact information to
-                    third parties or advertising networks. submitted details are
-                    used exclusively for direct engineering consultations.
+                    we do not sell, rent, or trade your contact information.
+                    details provided are used exclusively for direct technical
+                    communication regarding your project.
                   </p>
                 </div>
                 <div>
@@ -94,15 +94,15 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
                     security standards
                   </h3>
                   <p>
-                    we employ industry-standard encryption protocols and secure
-                    infrastructure to safeguard all transmitted communications.
+                    we employ industry-standard protocols and secure digital
+                    practices to safeguard all submitted project inquiries.
                   </p>
                 </div>
               </>
             ) : (
               <>
                 <p>
-                  these terms of service govern your use of the securify website
+                  these terms of service govern your use of the codwebx website
                   and related digital advisory communications.
                 </p>
                 <div>
@@ -112,7 +112,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
                   <p>
                     all brand assets, visual design layouts, bespoke software
                     demonstrations, and editorial compositions on this website
-                    are the intellectual property of securify.
+                    are the intellectual property of codwebx.
                   </p>
                 </div>
                 <div>
@@ -120,10 +120,10 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
                     project proposals
                   </h3>
                   <p>
-                    information presented across project concept previews and
-                    engagement models is illustrative. formal engineering scopes,
-                    deliverables, and financial terms are codified exclusively
-                    in signed client statements of work.
+                    information presented across project previews and engagement
+                    models is illustrative. formal engineering scopes, deliverables,
+                    milestones, and financial terms are codified exclusively in
+                    agreed client statements of work.
                   </p>
                 </div>
               </>

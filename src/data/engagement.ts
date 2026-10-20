@@ -5,41 +5,42 @@ export const engagementModels: EngagementModel[] = [
     id: 'fixed-scope',
     title: 'fixed-scope project',
     bestFor:
-      'best for clearly defined websites, applications, and software requirements.',
+      'for websites, applications, and software with clearly defined requirements.',
     description:
-      'a structured model with defined scope, agreed milestones, and clear deliverables tailored to launch timelines.',
+      'a structured model with agreed milestones, transparent deliverables, and a defined delivery timeline tailored to your target launch date.',
     features: [
-      'defined project scope',
-      'fixed milestone deliverables',
-      'predictable timeline',
-      'dedicated quality validation',
+      'clearly defined project scope',
+      'agreed milestone deliverables',
+      'transparent timeline estimate',
+      'dedicated quality validation & handover',
     ],
   },
   {
-    id: 'dedicated-team',
-    title: 'dedicated development',
-    bestFor: 'best for businesses that need ongoing engineering capacity.',
-    description:
-      'an adaptable engineering partnership providing continuous momentum, sprint delivery, and deep architectural alignment.',
-    features: [
-      'agreed sprint capacity',
-      'prioritized backlog tasks',
-      'direct technical communication',
-      'rapid iteration cycles',
-    ],
-  },
-  {
-    id: 'ongoing-support',
-    title: 'ongoing support',
+    id: 'ongoing-development',
+    title: 'ongoing development',
     bestFor:
-      'best for products that need continuous maintenance and improvement.',
+      'for businesses that need continuous feature development and engineering support.',
     description:
-      'reliable post-launch coverage ensuring system health, performance tuning, and timely feature enhancements.',
+      'an adaptable engineering partnership providing continuous momentum, sprint delivery, and technical expertise as your product grows.',
     features: [
-      'agreed support coverage',
-      'prompt bug resolution',
+      'agreed development capacity',
+      'prioritized sprint backlog',
+      'direct engineer communication',
+      'rapid iteration & feature shipping',
+    ],
+  },
+  {
+    id: 'maintenance-improvements',
+    title: 'maintenance and improvements',
+    bestFor:
+      'for existing websites and applications that need updates, bug fixes, optimization, or new functionality.',
+    description:
+      'reliable technical assistance to assess existing codebases, resolve bugs, enhance speed, and implement necessary modern features.',
+    features: [
+      'technical assessment of existing systems',
+      'bug fixes & performance tuning',
       'security & framework updates',
-      'planned product improvements',
+      'planned feature iterations',
     ],
   },
 ]

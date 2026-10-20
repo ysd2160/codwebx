@@ -1,18 +1,20 @@
-# Securify — Premium Cinematic Software Development Agency Website
+# CodWebX — IT Company & Digital Engineering Studio
 
-A complete, premium, cinematic digital product studio website built with **React**, **TypeScript**, **Vite**, **Tailwind CSS v4**, and **Framer Motion**.
+Official website for **CodWebX**, a modern IT company and digital product development studio based in Ahmedabad, Gujarat, India. CodWebX engineers high-performance websites, custom business software, and its proprietary point-of-sale platform (**CodWebX POS**) for startups, small businesses, cafes, and growing companies.
 
 ---
 
-## ⚡ Tech Stack
+## ⚡ Tech Stack & Design System
 
 - **React 19**
 - **TypeScript**
 - **Vite**
 - **Tailwind CSS v4** (`@tailwindcss/vite`)
-- **Framer Motion** (smooth staggered entrance, scroll reveals, and accessible accordions)
-- **Lucide React** (minimalist monochrome interface icons)
-- **Google Fonts** (Readex Pro: weights 300, 400, 500, 600, 700)
+- **Framer Motion** (tasteful reveal animations, staggered entrance, and accessible accordions)
+- **Lucide React** (clean minimalist interface icons)
+- **Google Fonts** (**Sora**: weights 300, 400, 500, 600, 700, 800)
+- **Spline 3D & Vector Geometry** (`@splinetool/react-spline` with SVG isometric fallback)
+- **Visual Design**: Dark-only theme (`hsl(0 0% 7%)` to `hsl(0 0% 10%)`) with electric vivid green accents (`hsl(119 99% 46%)` / `#16ea1a`) and subtle glow effects.
 
 ---
 
@@ -41,70 +43,76 @@ npm run preview
 
 ---
 
-## 🎨 Global Design System
+## 🏢 Business Identity & Contact Details
 
-- **Monochrome Palette**:
-  - Pure Black (`#000000`)
-  - Near-Black (`#080808`)
-  - Dark Charcoal (`#111111`)
-  - Neutral Gray (`#777777`)
-  - Light Gray (`#BDBDBD`)
-  - Pure White (`#FFFFFF`)
-  - Translucent overlays (`white/5`, `white/10`, `white/20`, `white/40`)
-- **Editorial Typography**: Readex Pro, strictly lowercase copy across all headings, navigation, buttons, statistics, and body text.
-- **Cinematic Motion**: High-contrast video backgrounds, staggered entrance typography (`we`, `build`, `digital.`), floating pill-shaped navigation, and accessible accordions.
+- **Company Name**: CodWebX
+- **Business**: IT Company & Digital Product Engineering Studio
+- **Email**: [codwebx@gmail.com](mailto:codwebx@gmail.com)
+- **Phone**: [+91 7575097762](tel:+917575097762)
+- **WhatsApp**: [+91 7575097762](https://wa.me/917575097762)
+- **Location**: Ahmedabad, Gujarat, India (Available for local consultations & remote worldwide client collaboration)
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Core Offerings
+
+1. **Web Development**: Fast, responsive, conversion-focused websites and web applications built with modern frameworks and clean architecture.
+2. **Software Development**: Custom business applications, admin dashboards, workflow automation tools, and internal systems that solve operational bottlenecks.
+3. **CodWebX POS**: Dedicated point-of-sale platform for cafes, dining, and retail counters with 58mm/80mm thermal receipt printing, split payments, barcode/QR scanning, instant PDF invoicing, and visual sales telemetry.
+
+---
+
+## 🌟 Verified Projects & Products
+
+- **Good Vibes Cafe**: Verified client delivery of a touch-optimized cafe management & POS system in Ahmedabad featuring 58mm Bluetooth thermal receipt printing, cash return calculator, split payment handling, and concurrent table order routing (`GVC-0001`).
+- **CodWebX POS**: Proprietary point-of-sale product under active development built with React 19, Redux Toolkit, Recharts, jsPDF, and barcode/QR scanning.
+
+---
+
+## 📁 Codebase Architecture
 
 ```
 ├── public/
-│   ├── favicon.svg             # Custom geometric brand mark
-│   └── ...
+│   ├── assets/images/          # Authentic CodWebX logos and project assets
+│   ├── favicon.svg             # CodWebX code brackets SVG mark
+│   ├── robots.txt              # Production crawler directives
+│   └── sitemap.xml             # Search engine index sitemap
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.tsx          # Floating pill navbar with mobile drawer
-│   │   ├── Hero.tsx            # Fullscreen cinematic video hero with staggered typography
-│   │   ├── IntroSection.tsx    # Studio philosophy & beliefs
-│   │   ├── ServicesSection.tsx # 6 core service offerings with interactive states
-│   │   ├── PortfolioSection.tsx# Asymmetric case study showcases
-│   │   ├── CaseStudyModal.tsx  # Detailed concept case study modal
-│   │   ├── BenefitsSection.tsx # Why Choose Us: 4 core principles
+│   │   ├── HeroSection.tsx     # Hero with 3D tech background, Sora typography & CTAs
+│   │   ├── TechBackground.tsx  # Spline 3D loader with graceful SVG fallback
+│   │   ├── IntroSection.tsx    # Philosophy & positioning
+│   │   ├── ServicesSection.tsx # 3 core service categories with unique mockups
+│   │   ├── PosProductSection.tsx # Dedicated CodWebX POS showcase (#pos & #products)
+│   │   ├── PortfolioSection.tsx# Selected work (Good Vibes Cafe, CodWebX POS)
+│   │   ├── CaseStudyModal.tsx  # In-depth case study inspection dialog
+│   │   ├── BenefitsSection.tsx # 4 engineering principles
 │   │   ├── TechStackSection.tsx# Categorized technologies
-│   │   ├── ProcessSection.tsx  # 5-stage milestone development timeline
-│   │   ├── TestimonialsSection.tsx # Client feedback slider with honest disclosures
-│   │   ├── AboutSection.tsx    # Studio ethos & atmospheric visual
+│   │   ├── ProcessSection.tsx  # 5-stage milestone delivery sequence
+│   │   ├── RealProofSection.tsx# Verified client delivery social proof
+│   │   ├── AboutSection.tsx    # Studio ethos & Ahmedabad headquarters
 │   │   ├── EngagementSection.tsx # 3 engagement models
-│   │   ├── FAQSection.tsx      # Accessible keyboard-navigable accordion
-│   │   ├── ContactSection.tsx  # Project enquiry form with validation & states
-│   │   ├── FinalCTAStrip.tsx   # Bold typographic statement
+│   │   ├── FAQSection.tsx      # Essential FAQs with animated accordion
+│   │   ├── ContactSection.tsx  # Validated project enquiry form with WhatsApp
+│   │   ├── FinalCTAStrip.tsx   # Bold closing statement
 │   │   ├── Footer.tsx          # Multi-column editorial footer
-│   │   └── LegalModal.tsx      # Privacy policy & terms dialogs
+│   │   └── LegalModal.tsx      # Privacy policy & terms of service
 │   ├── data/
-│   │   ├── services.ts         # Typed service offerings
-│   │   ├── projects.ts         # Typed case study concepts
+│   │   ├── services.ts         # Core service definitions
+│   │   ├── projects.ts         # Genuine case studies & products
 │   │   ├── whyUs.ts            # Studio principles
 │   │   ├── techStack.ts        # Categorized technologies
-│   │   ├── process.ts          # 5 developmental milestones
-│   │   ├── testimonials.ts     # Testimonial placeholders
-│   │   ├── faqs.ts             # 6 client questions & answers
-│   │   └── engagement.ts       # 3 partnership structures
+│   │   ├── process.ts          # 5-stage delivery model
+│   │   ├── faqs.ts             # FAQs
+│   │   └── engagement.ts       # Partnership models
 │   ├── types/
-│   │   └── index.ts            # TypeScript interfaces
-│   ├── App.tsx                 # Root application composition & state
+│   │   └── index.ts            # TypeScript data models
+│   ├── App.tsx                 # Root application state & composition
 │   ├── main.tsx                # React entrypoint
-│   └── index.css               # Global theme & typography rules
+│   └── index.css               # Theme tokens & typography rules
+├── index.html                  # SEO, Open Graph & JSON-LD metadata
 ├── package.json
 ├── tsconfig.json
 └── vite.config.ts
 ```
-
----
-
-## 🔒 Form Backend Integration
-
-The project enquiry form in `ContactSection.tsx` includes complete client-side validation, accessible error notifications, loading spinners, and success confirmation views. To route form submissions to a live API backend:
-
-1. Create a `.env` file with `VITE_API_CONTACT_ENDPOINT=https://your-api.com/enquiry`.
-2. Connect the `handleSubmit` method in `src/components/ContactSection.tsx` to `fetch(import.meta.env.VITE_API_CONTACT_ENDPOINT, { method: 'POST', body: JSON.stringify(formData) })`.

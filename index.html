@@ -4,21 +4,70 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>securify — digital product development studio</title>
+    <title>CodWebX | Web & Software Development Company</title>
     <meta
       name="description"
-      content="securify — premium digital product studio and software development agency specializing in custom software, mobile apps, saas platforms, and ai applications."
+      content="CodWebX builds business websites, web applications, custom software, and POS solutions for growing businesses."
     />
-    <meta name="theme-color" content="#000000" />
-    <!-- Google Fonts: Readex Pro 300, 400, 500, 600, 700 -->
+    <meta name="theme-color" content="#0d0d0d" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="CodWebX | Web & Software Development Company" />
+    <meta
+      property="og:description"
+      content="We design and develop digital experiences, custom software, and practical business technology that helps companies work better and grow."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CodWebX" />
+    <meta property="og:image" content="/assets/images/codewebx-full.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CodWebX | Web & Software Development Company" />
+    <meta
+      name="twitter:description"
+      content="CodWebX builds business websites, web applications, custom software, and POS solutions for growing businesses."
+    />
+    <meta name="twitter:image" content="/assets/images/codewebx-full.png" />
+
+    <!-- Google Fonts: Sora (300, 400, 500, 600, 700, 800) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "CodWebX",
+        "description": "CodWebX builds business websites, web applications, custom software, and POS solutions for growing businesses.",
+        "email": "codwebx@gmail.com",
+        "telephone": "+917575097762",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ahmedabad",
+          "addressRegion": "Gujarat",
+          "addressCountry": "IN"
+        },
+        "areaServed": ["Ahmedabad", "India", "Worldwide"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Core Technology Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CodWebX POS" } }
+          ]
+        }
+      }
+    </script>
   </head>
-  <body class="bg-black text-white antialiased">
+  <body class="bg-background text-foreground font-sora antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

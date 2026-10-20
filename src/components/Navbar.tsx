@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X, Phone } from 'lucide-react'
 
 interface NavbarProps {
   onOpenContact?: () => void
@@ -11,22 +11,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 25)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
   const navLinks = [
-    { label: 'services', href: '#services' },
-    { label: 'work', href: '#work' },
-    { label: 'process', href: '#process' },
-    { label: 'about', href: '#about' },
-    { label: 'contact', href: '#contact' },
+    { label: 'Services', href: '#services' },
+    { label: 'Work', href: '#work' },
+    { label: 'POS', href: '#pos' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
   ]
 
   const handleNavClick = (
@@ -56,96 +64,113 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'pt-3 pb-3' : 'pt-6'
-      } px-6 md:px-10`}
+        isScrolled
+          ? 'bg-[hsl(0_0%_10%/0.85)] backdrop-blur-xl border-b border-[hsl(0_0%_22%/0.7)] py-3 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
+          : 'bg-transparent py-5'
+      } px-4 sm:px-8 lg:px-14`}
     >
       <nav
-        aria-label="primary navigation"
+        aria-label="Primary Navigation"
         className="max-w-7xl mx-auto flex items-center justify-between gap-4"
       >
-        {/* Left pill: Brand logo & name */}
+        {/* Left: CodWebX Typographic Wordmark */}
         <a
           href="#"
-          className="flex items-center gap-2.5 bg-neutral-900/90 backdrop-blur-md rounded-full pl-4 pr-6 py-3 border border-white/10 hover:border-white/20 transition-colors"
-          aria-label="securify home"
+          className="flex items-center gap-2 group cursor-pointer focus:outline-none"
+          aria-label="CodWebX Home"
         >
-          <svg
-            viewBox="0 0 256 256"
-            className="h-5 w-5 text-white"
-            fill="#ffffff"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path d="M 128 192 L 128 256 L 64.5 256 L 32 223 L 0 192 L 0 128 L 64 128 Z M 256 192 L 256 256 L 192.5 256 L 160 223 L 128 192 L 128 128 L 192 128 Z M 128 64 L 128 128 L 64.5 128 L 32 95 L 0 64 L 0 0 L 64 0 Z M 256 64 L 256 128 L 192.5 128 L 160 95 L 128 64 L 128 0 L 192 0 Z" />
-          </svg>
-          <span className="text-white text-sm font-normal tracking-tight">
-            securify
-          </span>
+          <div className="flex items-center tracking-tight font-extrabold text-xl sm:text-2xl">
+            <span className="text-white group-hover:text-white/90 transition-colors">
+              Cod
+            </span>
+            <span className="text-[hsl(119_99%_46%)] text-glow-green group-hover:scale-105 transition-transform">
+              WebX
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[hsl(119_99%_46%)] ml-1 shadow-[0_0_8px_hsl(119_99%_46%)]" />
+          </div>
         </a>
 
-        {/* Center pill: Navigation Links (hidden on mobile) */}
-        <div className="hidden md:flex items-center gap-1 bg-neutral-900/90 backdrop-blur-md rounded-full px-3 py-2 border border-white/10">
+        {/* Center: Navigation Links */}
+        <div className="hidden md:flex items-center gap-1 bg-[hsl(0_0%_16%/0.7)] backdrop-blur-md rounded-full px-4 py-1.5 border border-[hsl(0_0%_22%)]">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-neutral-300 hover:text-white transition-colors text-sm px-5 py-2 rounded-full"
+              className="text-[hsl(0_0%_75%)] hover:text-white text-xs lg:text-sm font-medium px-4 py-2 rounded-full transition-colors hover:bg-white/[0.04]"
             >
               {link.label}
             </a>
           ))}
         </div>
 
-        {/* Right CTA pill + Mobile Menu Toggle */}
-        <div className="flex items-center gap-2">
+        {/* Right: Quick Phone & Primary CTA */}
+        <div className="flex items-center gap-3">
+          <a
+            href="tel:+917575097762"
+            className="hidden xl:flex items-center gap-1.5 text-xs text-[hsl(0_0%_75%)] hover:text-white transition-colors py-2 px-3 rounded-full hover:bg-white/5 font-mono"
+            title="Call CodWebX directly"
+          >
+            <Phone className="w-3.5 h-3.5 text-[hsl(119_99%_46%)]" />
+            <span>+91 7575097762</span>
+          </a>
+
           <button
             onClick={handleCtaClick}
             type="button"
-            className="flex items-center gap-1.5 bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 bg-[hsl(119_99%_46%)] text-[hsl(0_0%_4%)] text-xs sm:text-sm font-semibold rounded-full px-5 py-2.5 sm:px-6 sm:py-3 hover:bg-[hsl(119_99%_52%)] glow-green-sm hover:glow-green transition-all cursor-pointer"
           >
-            <span>let's talk</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span>Let's Talk</span>
+            <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
           </button>
 
           {/* Mobile hamburger button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-11 h-11 bg-neutral-900/90 backdrop-blur-md rounded-full border border-white/10 text-white hover:border-white/30 transition-colors"
-            aria-label={mobileMenuOpen ? 'close navigation' : 'open navigation'}
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full border border-[hsl(0_0%_22%)] bg-[hsl(0_0%_16%/0.8)] text-white hover:border-[hsl(119_99%_46%/0.5)] transition-colors cursor-pointer"
+            aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
-              <X className="w-5 h-5 text-white" />
+              <X className="w-5 h-5 text-[hsl(119_99%_46%)]" />
             ) : (
-              <Menu className="w-5 h-5 text-white" />
+              <Menu className="w-5 h-5" />
             )}
           </button>
         </div>
       </nav>
 
-      {/* Mobile navigation drawer / dropdown */}
+      {/* Mobile Navigation Drawer Overlay */}
       {mobileMenuOpen && (
-        <div className="md:hidden mt-3 max-w-sm mx-auto bg-neutral-950/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden fixed inset-x-4 top-20 bg-[hsl(0_0%_12%/0.96)] backdrop-blur-2xl border border-[hsl(0_0%_22%)] rounded-3xl p-6 shadow-2xl z-50 animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-neutral-300 hover:text-white text-base py-3 px-4 rounded-xl hover:bg-white/5 transition-colors"
+                className="text-white hover:text-[hsl(119_99%_46%)] text-base font-medium py-3 px-4 rounded-xl hover:bg-white/5 transition-colors"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-3 border-t border-white/10 mt-2">
+
+            <div className="pt-4 border-t border-[hsl(0_0%_22%)] mt-2 space-y-3">
+              <a
+                href="tel:+917575097762"
+                className="flex items-center justify-center gap-2 text-xs text-neutral-300 py-3 px-4 rounded-full border border-white/10 bg-white/5 font-mono"
+              >
+                <Phone className="w-3.5 h-3.5 text-[hsl(119_99%_46%)]" />
+                <span>+91 7575097762</span>
+              </a>
+
               <button
                 onClick={handleCtaClick}
-                className="w-full flex items-center justify-center gap-2 bg-white text-black text-sm py-3.5 rounded-full hover:bg-neutral-200 transition-colors"
+                className="w-full flex items-center justify-center gap-2 bg-[hsl(119_99%_46%)] text-[hsl(0_0%_4%)] font-semibold text-sm py-3.5 rounded-full hover:bg-[hsl(119_99%_52%)] glow-green-sm transition-all cursor-pointer"
               >
-                <span>let's talk</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>Let's Talk</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </button>
             </div>
           </div>

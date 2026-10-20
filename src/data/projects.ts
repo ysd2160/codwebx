@@ -2,75 +2,75 @@ import { Project } from '../types'
 
 export const projectsData: Project[] = [
   {
-    id: 'commerce-reimagined',
+    id: 'good-vibes-cafe',
     number: '01',
-    name: 'commerce, reimagined',
-    category: 'e-commerce platform',
+    name: 'Good Vibes Cafe',
+    category: 'WEBSITE DEVELOPMENT / POS IMPLEMENTATION',
+    title: 'A cafe-focused digital experience & POS solution',
     description:
-      'a streamlined shopping experience with a custom storefront, inventory workflows, and a conversion-focused interface.',
+      'A cafe-focused digital experience combining a business website with a POS solution to support the customer-facing presence and day-to-day operations.',
     challenge:
-      'legacy checkout bottlenecks and fragmented inventory synchronization across multi-channel warehouses.',
+      'The cafe required a fast counter-billing workflow during rush hours, reliable thermal printing on compact 58mm Bluetooth hardware, quick cash return calculations, split payment options (Cash + UPI), and separate order handling for dine-in and takeaway.',
     solution:
-      'engineered a headless commerce platform with instant catalog queries, optimistic UI states, and a sub-second checkout experience.',
-    techStack: ['react', 'node.js', 'postgresql', 'tailwind css', 'stripe'],
-    outcome: 'concept benchmark: modeled 42% reduction in checkout drop-off and instant inventory parity.',
-    isConcept: true,
-    image:
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+      'We engineered a lightweight, touch-optimized management system with thermal receipt printing, split payment auto-calculation, sequential collision-safe bill numbering (GVC-0001), and a responsive menu and ordering interface.',
+    techStack: [
+      'React',
+      'Vite',
+      'Tailwind CSS',
+      'Node.js',
+      'Express',
+      'MongoDB',
+    ],
+    outcome:
+      'Active in production daily service in Ahmedabad, facilitating fast cashier orders, thermal receipt printing, and real-time sales visibility.',
+    type: 'client_delivery',
+    badge: 'Delivered Client Project',
+    image: '/assets/images/modern-cafe-menu.png',
     aspectRatio: 'wide',
+    features: [
+      'Bluetooth thermal receipt printing (58mm)',
+      'Cash return calculator & split payment auto-fill',
+      'Dine-in / Takeaway order management with table numbers',
+      'Sequential collision-safe bill numbering (GVC-0001)',
+      'Made-to-order stock tracking toggle',
+    ],
+    ctaText: 'View Project Details',
+    ctaHref: '#contact',
   },
   {
-    id: 'operations-simplified',
+    id: 'codwebx-pos',
     number: '02',
-    name: 'operations, simplified',
-    category: 'business management software',
+    name: 'CodWebX POS',
+    category: 'IN-HOUSE PRODUCT',
+    title: 'One product. Better operational control.',
     description:
-      'a centralized dashboard that brings orders, products, reporting, and daily operations into one place.',
+      'Our own POS product brings important sales and business workflows into a centralized interface.',
     challenge:
-      'multiple disconnected third-party tools causing reconciliation errors and heavy manual spreadsheet tracking.',
+      'Independent retailers, cafes, and small businesses often rely on disconnected billing machines or expensive per-register subscriptions that complicate basic inventory, staff roles, and daily accounting.',
     solution:
-      'unified all order fulfillment, inventory thresholds, and operational telemetry into a single responsive control plane.',
-    techStack: ['next.js', 'typescript', 'express', 'postgresql', 'redis'],
-    outcome: 'concept benchmark: projected 60% reduction in daily administrative reconciliation effort.',
-    isConcept: true,
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+      'We are building an all-in-one modern POS platform with quick item search, barcode and QR code product scanning, instant client-side PDF invoices, visual telemetry analytics (Recharts), and granular staff permission management.',
+    techStack: [
+      'React 19',
+      'Redux Toolkit',
+      'Tailwind CSS',
+      'Recharts',
+      'jsPDF',
+      'Barcode / QR Scanner',
+    ],
+    outcome:
+      'Under active development with working core cashier terminal, inventory management, barcode scanning, custom receipt printing, and sales reporting.',
+    type: 'internal_product',
+    badge: 'Proprietary Product · In Active Development',
+    image: '/assets/images/codewebx-full.png',
     aspectRatio: 'tall',
-  },
-  {
-    id: 'connect-on-the-go',
-    number: '03',
-    name: 'connect on the go',
-    category: 'mobile application',
-    description:
-      'a customer-focused mobile experience designed around convenience, speed, and seamless interactions.',
-    challenge:
-      'sluggish interactions, high battery drain, and poor performance under intermittent connectivity.',
-    solution:
-      'developed a native-feel cross-platform mobile client with background caching, biometric authentication, and haptic feedback.',
-    techStack: ['react native', 'typescript', 'node.js', 'mongodb', 'rest apis'],
-    outcome: 'concept benchmark: sub-100ms response targets with resilient offline synchronization.',
-    isConcept: true,
-    image:
-      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
-    aspectRatio: 'tall',
-  },
-  {
-    id: 'intelligence-at-scale',
-    number: '04',
-    name: 'intelligence at scale',
-    category: 'saas platform',
-    description:
-      'a scalable digital platform with user management, analytics, and integrated business workflows.',
-    challenge:
-      'multi-tenant scaling bottlenecks, disparate authorization models, and slow reporting aggregates.',
-    solution:
-      'architected row-level secure multitenancy with event-driven background workers and automated report generation.',
-    techStack: ['react', 'python', 'fastapi', 'postgresql', 'cloud services'],
-    outcome: 'concept benchmark: high-throughput architecture verified for horizontal scaling.',
-    isConcept: true,
-    image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
-    aspectRatio: 'wide',
+    features: [
+      'Centralized product & multi-category inventory control',
+      'Instant PDF invoice generation & receipt printing',
+      'Visual sales telemetry & analytics charts',
+      'Barcode & QR code product scanning',
+      'Role-based staff access permissions',
+    ],
+    ctaText: 'Explore the Product',
+    ctaHref: '#products',
   },
 ]

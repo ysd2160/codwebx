@@ -2,27 +2,27 @@ import { Principle } from '../types'
 
 export const whyUsPrinciples: Principle[] = [
   {
-    id: 'goals',
-    title: 'built around your goals',
+    id: 'understand-before-building',
+    title: 'Understand before building',
     description:
-      'we align every design and development decision with your business objectives.',
+      'We focus on your actual requirements before choosing the implementation.',
   },
   {
-    id: 'scale',
-    title: 'engineered to scale',
+    id: 'build-for-real-use',
+    title: 'Build for real use',
     description:
-      'we build maintainable digital foundations that can evolve with your product.',
+      'We prioritize usable interfaces, practical workflows, and maintainable code.',
   },
   {
-    id: 'people',
-    title: 'designed for people',
+    id: 'keep-communication-clear',
+    title: 'Keep communication clear',
     description:
-      'we prioritize usability, accessibility, and meaningful customer experiences.',
+      'Project priorities, scope, and next steps should be easy to understand.',
   },
   {
-    id: 'partnership',
-    title: 'partnership beyond launch',
+    id: 'improve-beyond-launch',
+    title: 'Improve beyond launch',
     description:
-      'we help you improve, maintain, and grow your product after the initial release.',
+      'Digital products can evolve through maintenance, improvements, and new features as business needs change.',
   },
 ]
