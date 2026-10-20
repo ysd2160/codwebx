@@ -25,7 +25,7 @@ export const projectsData: Project[] = [
       'Active in production daily service in Ahmedabad, facilitating fast cashier orders, thermal receipt printing, and real-time sales visibility.',
     type: 'client_delivery',
     badge: 'Delivered Client Project',
-    image: '/assets/images/modern-cafe-menu.png',
+    image: '/assets/images/modern-cafe-menu1.png',
     aspectRatio: 'wide',
     features: [
       'Bluetooth thermal receipt printing (58mm)',
